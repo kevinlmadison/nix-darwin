@@ -39,7 +39,7 @@ in
         ++ optionals (cfg.skhdConfig != "") [ "-c" "/etc/skhdrc" ];
       serviceConfig.KeepAlive = true;
       serviceConfig.ProcessType = "Interactive";
-      serviceConfig.EnvironmentVariables = {
+      serviceConfig.EnvironmentVariables = lib.mkForce {
         PATH = "${cfg.package}/bin:${config.environment.systemPath}";
       };
     };
