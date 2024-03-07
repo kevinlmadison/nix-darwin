@@ -39,6 +39,9 @@ in
         ++ optionals (cfg.skhdConfig != "") [ "-c" "/etc/skhdrc" ];
       serviceConfig.KeepAlive = true;
       serviceConfig.ProcessType = "Interactive";
+      serviceConfig.EnvironmentVariables = {
+        PATH = "${cfg.package}/bin:${config.environment.systemPath}";
+      };
     };
 
   };
