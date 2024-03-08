@@ -35,13 +35,10 @@ in
     launchd.user.agents.skhd = {
       path = [ config.environment.systemPath ];
 
-      serviceConfig.ProgramArguments = [ "${cfg.package}/bin/skhd" ]
+      serviceConfig.ProgramArguments = [ "${cfg.package}/bin/skhd" "-V" ]
         ++ optionals (cfg.skhdConfig != "") [ "-c" "/etc/skhdrc" ];
       serviceConfig.KeepAlive = true;
       serviceConfig.ProcessType = "Interactive";
-      serviceConfig.EnvironmentVariables = lib.mkForce {
-        PATH = "${cfg.package}/bin:${config.environment.systemPath}";
-      };
     };
 
   };
